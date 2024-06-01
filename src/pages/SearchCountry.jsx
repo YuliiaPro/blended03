@@ -8,17 +8,21 @@ import {
 } from 'components';
 import { fetchByRegion } from 'service/countryApi';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 export const SearchCountry = () => {
   const [countries, setCountries] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [region, setRegion] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const onSearch = region => {
-    setRegion(region);
+    setSearchParams({ region });
   };
 
   useEffect(() => {
+    const region = searchParams.get('region');
+
     if (!region) {
       return;
     }
@@ -34,7 +38,7 @@ export const SearchCountry = () => {
       }
     };
     searchCountry();
-  }, [region]);
+  }, [searchParams]);
   return (
     <Section>
       <Container>

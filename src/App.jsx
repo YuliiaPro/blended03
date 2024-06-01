@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
-import { Heading, Header, Loader } from 'components';
+import { Header, Loader } from 'components';
 
 const Home = lazy(() =>
   import('./pages/Home').then(module => ({ default: module.Home })),
